@@ -32,13 +32,13 @@ struct ProfileView: View {
                             .lineLimit(1)
                     }
                     VStack(alignment:.leading){
-                        detailCardView(systemImageName: "mail", textDetail: user.email)
+                        detailCardView(systemImageName: "mail", textDetail: user.email,width:20 ,height: 15)
                         Divider()
-                        detailCardView(systemImageName: "mappin.and.ellipse", textDetail: user.location ?? "")
+                        detailCardView(systemImageName: "mappin.and.ellipse", textDetail: user.location ?? "",width: 18,height: 20)
                         Divider()
-                        detailCardView(systemImageName: "phone", textDetail: user.phone ?? "")
+                        detailCardView(systemImageName: "phone", textDetail: user.phone ?? "",width:18 ,height: 18)
                         Divider()
-                        detailCardView(systemImageName: "calendar", textDetail: user.birthYear ?? "")
+                        detailCardView(systemImageName: "calendar", textDetail: user.birthYear ?? "",width:20 ,height: 20)
                     }
                     .padding()
                     .frame(minWidth: 300,alignment: .leading)
@@ -67,15 +67,18 @@ extension ProfileView {
         
         var systemImageName: String
         var textDetail : String
+        var width: CGFloat
+        var height: CGFloat
         
         var body: some View {
             HStack{
                 Image(systemName:systemImageName)
                     .resizable()
-                    .frame(width: 20,height: 15)
+                    .frame(width: width,height: height)
                     .foregroundColor(.blue)
                     .padding(.leading,3)
                 Text("\(textDetail)")
+                    .foregroundStyle(Color(red: 222 / 255, green: 174 / 255, blue: 194 / 255))
             }.padding(.vertical)
         }
     }

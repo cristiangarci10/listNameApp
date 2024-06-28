@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 final class UserRepositoryImpl: UsersRepository {
     
     private let remoteDataSource: UserRemoteDataSource
