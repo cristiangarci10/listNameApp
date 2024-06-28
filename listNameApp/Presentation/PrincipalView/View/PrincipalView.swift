@@ -125,25 +125,10 @@ extension PrincipalView {
         var body: some View {
             ZStack{
                 VStack{
-                    AsyncImage(url: URL(string: image ?? "")) { phase in
-                                  if let image = phase.image {
-                                      image.resizable()
-                                          .aspectRatio(contentMode: .fill)
-                                          .frame(width: 100, height: 100)
-                                          .clipShape(Rectangle())
-                                  } else if phase.error != nil {
-                                      Color.red // Indicates an error.
-                                          .frame(width: 50, height: 50)
-                                          .clipShape(Rectangle())
-                                  } else {
-                                      Color.gray // Acts as a placeholder.
-                                          .frame(width: 50, height: 50)
-                                          .clipShape(Rectangle())
-                                  }
-                              }
-                    .frame(width: 100, height: 100,alignment: .top) // Ensure the frame is set here as well
-                              .clipped()
-                              .cornerRadius(10)
+                    
+                    AsyncImageView(image: image ?? "", width: 100, height: 100)
+                    .clipShape(Rectangle())
+                    
                     Spacer()
                     Text("\(name) \(lastName)")
                     .fixedSize()
@@ -161,4 +146,6 @@ extension PrincipalView {
         }
     }
 }
+
+
 

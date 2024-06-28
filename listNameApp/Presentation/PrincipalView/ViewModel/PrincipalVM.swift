@@ -17,6 +17,7 @@ class UserViewModel: ObservableObject {
 
     init(userRepositoryImpl: UserRepositoryImpl = UserRepositoryImpl()) {
         self.userRepositoryImpl = userRepositoryImpl
+        loadUsers(pages: [1,2])
     }
 
     func loadUsers(pages: [Int]) {
