@@ -7,23 +7,10 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct PrincipalView: View {
     @StateObject private var viewModel = UserViewModel()
     @State private var searchText = ""
-    let columns = [
-            GridItem(.fixed(150)),
-            GridItem(.fixed(150))
-        ]
     
-    var searchUsers: [User] {
-      
-        if !searchText.isEmpty{
-            return viewModel.users.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        } else {
-            return viewModel.users
-        }
-     
-    }
 
        var body: some View {
            NavigationView{
@@ -32,21 +19,7 @@ struct ContentView: View {
                        searchElement(searchText: $searchText, placeholder: "Buscar usuario")
                            .padding(.vertical)
                            .padding(.horizontal,25)
-                       ScrollView {
-                           LazyVGrid(columns: columns, spacing: 1) {
-                               ForEach(searchUsers.sorted{$0.id < $1.id}) { user in
-                                   VStack(alignment: .center) {
-                                       NavigationLink(destination: ProfileView(user: user)) {
-                                           CardView(image: user.avatar, name: user.name, lastName: user.lastName, email: user.email)
-                                           
-                                       }
-                                           .padding(.horizontal)
-                                   }
-                                   .padding(.top)
-                               }
-                           }
-                         
-                       }
+                       LazyView(users: viewModel.users, searchText: searchText)
                    }  .padding(.horizontal)
                }.background{
                    Image("degradado")
@@ -56,19 +29,92 @@ struct ContentView: View {
                }
            
            }
-           .onAppear {
-               viewModel.loadUsers(pages: [1,2])
-           }
-       
+          
        }
 }
 
 
 #Preview {
-    ContentView()
+    PrincipalView()
 }
 
-extension ContentView {
+extension PrincipalView {
+
+    struct searchElement: View {
+        
+        @Binding var searchText: String
+        var placeholder: String
+        
+        var body: some View {
+            HStack{
+                Image(systemName: "magnifyingglass").foregroundColor(Color.gray.opacity(0.4))
+                TextField(placeholder, text: $searchText)
+                    .font(.custom("Cochin", size: 12))
+                    .foregroundColor(.blue)
+                    .padding(.trailing)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .frame(height: 8)
+                if !searchText.isEmpty {
+                    Button {
+                        searchText = ""
+                    } label: {
+                        Image(systemName: "x.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15,height: 15)
+                            .foregroundColor(.blue)
+                    }
+                    
+                }
+                
+            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            .padding(.top,5)
+        }
+    }
+    
+    
+    struct LazyView: View {
+        
+        let columns = [
+                GridItem(.fixed(150)),
+                GridItem(.fixed(150))
+            ]
+        
+        var users: [User]
+        var searchText: String
+        
+        var searchUsers: [User] {
+          
+            if !searchText.isEmpty{
+                return users.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+            } else {
+                return users
+            }
+         
+        }
+        
+        var body: some View {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 1) {
+                    ForEach(searchUsers.sorted{$0.id < $1.id}) { user in
+                        VStack(alignment: .center) {
+                            NavigationLink(destination: ProfileView(user: user)) {
+                                CardView(image: user.avatar, name: user.name, lastName: user.lastName, email: user.email)
+                                
+                            }
+                            .padding(.horizontal)
+                        }
+                        .padding(.top)
+                    }
+                }
+                
+            }
+        }
+    }
     
     struct CardView: View {
         var image: String?
@@ -114,41 +160,5 @@ extension ContentView {
             .shadow(radius: 5)
         }
     }
-    
-    
-    struct searchElement: View {
-        
-        @Binding var searchText: String
-        var placeholder: String
-        
-        var body: some View {
-            HStack{
-                Image(systemName: "magnifyingglass").foregroundColor(Color.gray.opacity(0.4))
-                TextField(placeholder, text: $searchText)
-                    .font(.custom("Cochin", size: 12))
-                    .foregroundColor(.blue)
-                    .padding(.trailing)
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .frame(height: 8)
-                if !searchText.isEmpty {
-                    Button {
-                        searchText = ""
-                    } label: {
-                        Image(systemName: "x.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15,height: 15)
-                            .foregroundColor(.blue)
-                    }
-                    
-                }
-                
-            }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            .padding(.top,5)
-        }
-    }
 }
+
