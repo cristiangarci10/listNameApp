@@ -10,6 +10,7 @@ import SwiftUI
 struct PrincipalView: View {
     @StateObject private var viewModel = UserViewModel()
     @State private var searchText = ""
+    @State private var alert : Bool = false
     
 
        var body: some View {
@@ -29,7 +30,14 @@ struct PrincipalView: View {
                }
            
            }
-          
+           .onReceive(viewModel.$errorMessage, perform: { message in
+               if viewModel.errorMessage != "" {
+                   alert.toggle()
+               }
+           })
+           .alert(isPresented: $alert) {
+               Alert(title: Text("Error en el servicio"))
+           }
        }
 }
 

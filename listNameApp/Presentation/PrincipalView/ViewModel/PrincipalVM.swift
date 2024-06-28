@@ -11,7 +11,7 @@ import SwiftUI
 
 class UserViewModel: ObservableObject {
     @Published var users: [User] = []
-    @Published var errorMessage: String?
+    @Published var errorMessage: String = ""
 
     private let userRepositoryImpl: UserRepositoryImpl
 
