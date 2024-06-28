@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		839BF4732C2E37910087D56B /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BF4722C2E37910087D56B /* AsyncImageView.swift */; };
 		839BF4762C2E3D470087D56B /* UserRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BF4752C2E3D470087D56B /* UserRemoteDataSource.swift */; };
+		839BF47B2C2E4C530087D56B /* ApiUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BF47A2C2E4C530087D56B /* ApiUrls.swift */; };
+		839BF47D2C2E50290087D56B /* listName-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 839BF47C2C2E50290087D56B /* listName-Info.plist */; };
 		83D32DAC2C2B0F9400E6873F /* listNameAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D32DAB2C2B0F9400E6873F /* listNameAppApp.swift */; };
 		83D32DAE2C2B0F9400E6873F /* PrincipalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D32DAD2C2B0F9400E6873F /* PrincipalView.swift */; };
 		83D32DB02C2B0F9600E6873F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83D32DAF2C2B0F9600E6873F /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 /* Begin PBXFileReference section */
 		839BF4722C2E37910087D56B /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		839BF4752C2E3D470087D56B /* UserRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRemoteDataSource.swift; sourceTree = "<group>"; };
+		839BF47A2C2E4C530087D56B /* ApiUrls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUrls.swift; sourceTree = "<group>"; };
+		839BF47C2C2E50290087D56B /* listName-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "listName-Info.plist"; sourceTree = "<group>"; };
 		83D32DA82C2B0F9400E6873F /* listNameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = listNameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83D32DAB2C2B0F9400E6873F /* listNameAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listNameAppApp.swift; sourceTree = "<group>"; };
 		83D32DAD2C2B0F9400E6873F /* PrincipalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrincipalView.swift; sourceTree = "<group>"; };
@@ -99,6 +103,14 @@
 			path = "Use Cases";
 			sourceTree = "<group>";
 		};
+		839BF4772C2E48CB0087D56B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				839BF47A2C2E4C530087D56B /* ApiUrls.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		83D32D9F2C2B0F9400E6873F = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +141,7 @@
 				83D32DAB2C2B0F9400E6873F /* listNameAppApp.swift */,
 				83D32DAF2C2B0F9600E6873F /* Assets.xcassets */,
 				83D32DB12C2B0F9600E6873F /* Preview Content */,
+				839BF47C2C2E50290087D56B /* listName-Info.plist */,
 			);
 			path = listNameApp;
 			sourceTree = "<group>";
@@ -172,6 +185,7 @@
 		83D32DD62C2B164B00E6873F /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				839BF4772C2E48CB0087D56B /* Network */,
 				83D32DDC2C2B16E100E6873F /* Repositories */,
 			);
 			path = Data;
@@ -382,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83D32DB32C2B0F9600E6873F /* Preview Assets.xcassets in Resources */,
+				839BF47D2C2E50290087D56B /* listName-Info.plist in Resources */,
 				83D32DB02C2B0F9600E6873F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +426,7 @@
 				83D32DAE2C2B0F9400E6873F /* PrincipalView.swift in Sources */,
 				839BF4762C2E3D470087D56B /* UserRemoteDataSource.swift in Sources */,
 				83D32DAC2C2B0F9400E6873F /* listNameAppApp.swift in Sources */,
+				839BF47B2C2E4C530087D56B /* ApiUrls.swift in Sources */,
 				839BF4732C2E37910087D56B /* AsyncImageView.swift in Sources */,
 				83D32DE42C2B1B2900E6873F /* UserRepositoryImpl.swift in Sources */,
 				83D32DDF2C2B19BC00E6873F /* User.swift in Sources */,
@@ -585,6 +601,7 @@
 				DEVELOPMENT_TEAM = NNS2P69U9B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "listNameApp/listName-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -614,6 +631,7 @@
 				DEVELOPMENT_TEAM = NNS2P69U9B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "listNameApp/listName-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

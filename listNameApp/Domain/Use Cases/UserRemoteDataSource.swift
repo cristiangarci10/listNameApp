@@ -10,18 +10,23 @@ import Foundation
 final class UserRemoteDataSource {
     
     func fetchUsers(page: Int) async throws -> [User] {
-        
-        let url = URL(string: "https://reqres.in/api/users?page=\(page)")!
-        
+        guard let url = URL(string: "\(Configuration.apiBaseURL)/users?page=\(page)") else {
+            throw URLError(.badURL)
+        }
+
         let (data, response) = try await URLSession.shared.data(from: url)
-        
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw URLError(.badServerResponse)
         }
-        
-        let apiResponse = try JSONDecoder().decode(ApiResponse.self, from: data)
-        
-        return apiResponse.data
+
+        do {
+            let apiResponse = try JSONDecoder().decode(ApiResponse.self, from: data)
+            return apiResponse.data
+        } catch {
+            throw URLError(.cannotDecodeRawData)
+        }
     }
+
     
 }
